@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 400px;
+            margin: 20px auto;
+        }
+        .error-message {
+            color: black;
+            background-color: #EECCCC;
+            padding: 10px;
+            margin-top: 10px;
+            display: none;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .reset {
+            background-color: red;
+            color: white;
+        }
+        .submit {
+            background-color: green;
+            color: white;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .required:after {
+            content: " *";
+            color: red;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Workshop Registration</h2>
+        <form id="workshopForm">
+            <label for="name" class="required">Name</label>
+            <input type="text" id="name" name="name">
+
+            <label for="email" class="required">Email</label>
+            <input type="email" id="email" name="email">
+
+            <label for="address">Address</label>
+            <textarea id="address" name="address"></textarea>
+
+            <label for="age">Age</label>
+            <select id="age" name="age">
+                <option value="">- Select Age -</option>
+                <option value="18-25">18-25</option>
+                <option value="26-35">26-35</option>
+                <option value="36-45">36-45</option>
+                <option value="46+">46+</option>
+            </select>
+
+            <div class="error-message" id="errorMessage">
+                Please fill in your name and email.
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="reset" id="resetBtn">Reset</button>
+                <button type="button" class="submit" id="submitBtn">Submit Form</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('workshopForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const errorMessage = document.getElementById('errorMessage');
+        const resetBtn = document.getElementById('resetBtn');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Reset button functionality
+        resetBtn.addEventListener('click', () => {
+            form.reset();
+            errorMessage.style.display = 'none';
+        });
+
+        // Submit button functionality
+        submitBtn.addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+
+            if (!name || !email) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = 'Please fill in your name and email.';
+            } else {
+                errorMessage.style.display = 'none';
+                alert('Form submitted successfully!');
+            }
+        });
+    </script>
+</body>
+</html>
